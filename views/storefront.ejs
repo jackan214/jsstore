@@ -7,107 +7,58 @@
         <a href="/">Home</a>
       </div>
       <div id="header-right">
-        <span class="username-box">
-          <% try { %>
-            <%= username %>
-          <% } catch (error) { %>
-            You need to login first
-          <% } %>
+        <span>
+          <a href="/settings" class="username-box">  
+          <%= username %>
+          </a>
+          <form action="/logout" method="post">
+            <button class="username-box">
+              <a class="textlogout"> logout </a>
+            </button>
+          </form>
         </span>
       </div>
     </header>
     <main>
       <div id="item-grid">
+        <% for (let i = 0; i < items.length; i++) { %>
         <div class="item-placeholder">
-            <h3 class="card-title"><%= items[0].name %></h3>
-            <p class="card-text"><%= items[0].description %></p>
-            <p class="card-text">Price: <%= items[0].price %></p>
-          <form action="/add-to-cart" method="post">
-            <input type="hidden" name="item-id" value="0">
-            <button type="submit" class="btn btn-primary">Add to Cart</button>
-          </form>
+            <h3 class="card-title"><%= items[i].name %></h3>
+            <p class="card-text"><%= items[i].description %></p>
+            <p class="card-text">Price: <%= items[i].price %></p>
+            <% if (username == 'admin') { %>
+              <form action="/remove-item" method="post">
+                <input type="hidden" name="item-id" value="<%= i %>">
+                <button type="submit" class="btn btn-unprimary">Remove from Inventory</button>
+              </form>
+            <% } else { %>
+              <form action="/add-to-cart" method="post">
+                <input type="hidden" name="item-id" value="<%= i %>">
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+              </form>
+            <% } %>
+            
         </div>
-        <div class="item-placeholder">
-            <h3 class="card-title"><%= items[1].name %></h3>
-            <p class="card-text"><%= items[1].description %></p>
-            <p class="card-text">Price: <%= items[1].price %></p>
-          <form action="/add-to-cart" method="post">
-            <input type="hidden" name="item-id" value="1">
-            <button type="submit" class="btn btn-primary">Add to Cart</button>
-          </form>
+        <% } %>
+        <% if (username == 'admin') { %>
+        <div class="item-placeholder"> 
+          <form action="/addproduct" method="post">
+            <div class="card-title">
+              <label for="Titlenew">Title</label>
+              <input type="text" id="titlenew" name="titlenew" placeholder="Enter a title" required>
+            </div>
+            <div class="form-group">
+              <label for="Descriptionnew">Description</label>
+              <input type="text" id="descriptionnew" name="descriptionnew" placeholder="Enter a description" required>
+            </div>
+            <div class="form-group">
+              <label for="Costnew">Cost</label>
+              <input type="text" id="costnew" name="costnew" placeholder="Enter a cost" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>    
         </div>
-        <div class="item-placeholder">
-            <h3 class="card-title"><%= items[2].name %></h3>
-            <p class="card-text"><%= items[2].description %></p>
-            <p class="card-text">Price: <%= items[2].price %></p>
-          <form action="/add-to-cart" method="post">       
-            <input type="hidden" name="item-id" value="2">
-            <button type="submit" class="btn btn-primary">Add to Cart</button>
-          </form>
-        </div>
-        <div class="item-placeholder">
-            <h3 class="card-title"><%= items[3].name %></h3>
-            <p class="card-text"><%= items[3].description %></p>
-            <p class="card-text">Price: <%= items[3].price %></p>
-          <form action="/add-to-cart" method="post">
-            <input type="hidden" name="item-id" value="3">
-            <button type="submit" class="btn btn-primary">Add to Cart</button>
-          </form>
-        </div>
-        <div class="item-placeholder">
-            <h3 class="card-title"><%= items[4].name %></h3>
-            <p class="card-text"><%= items[4].description %></p>
-            <p class="card-text">Price: <%= items[4].price %></p>
-          <form action="/add-to-cart" method="post">
-            <input type="hidden" name="item-id" value="4">
-            <button type="submit" class="btn btn-primary">Add to Cart</button>
-          </form>
-        </div>
-        <div class="item-placeholder">
-            <h3 class="card-title"><%= items[5].name %></h3>
-            <p class="card-text"><%= items[5].description %></p>
-            <p class="card-text">Price: <%= items[5].price %></p>
-          <form action="/add-to-cart" method="post"> 
-            <input type="hidden" name="item-id" value="5">
-            <button type="submit" class="btn btn-primary">Add to Cart</button>
-          </form>
-        </div>
-        <div class="item-placeholder">
-            <h3 class="card-title"><%= items[6].name %></h3>
-            <p class="card-text"><%= items[6].description %></p>
-            <p class="card-text">Price: <%= items[6].price %></p>
-          <form action="/add-to-cart" method="post">
-            <input type="hidden" name="item-id" value="6">
-            <button type="submit" class="btn btn-primary">Add to Cart</button>
-          </form>
-        </div>
-        <div class="item-placeholder">
-            <h3 class="card-title"><%= items[7].name %></h3>
-            <p class="card-text"><%= items[7].description %></p>
-            <p class="card-text">Price: <%= items[7].price %></p>
-          <form action="/add-to-cart" method="post">
-            <input type="hidden" name="item-id" value="7">
-            <button type="submit" class="btn btn-primary">Add to Cart</button>
-          </form>
-        </div>
-        <div class="item-placeholder">
-            <h3 class="card-title"><%= items[8].name %></h3>
-            <p class="card-text"><%= items[8].description %></p>
-            <p class="card-text">Price: <%= items[8].price %></p>
-          <form action="/add-to-cart" method="post">
-            <input type="hidden" name="item-id" value="8">
-            <button type="submit" class="btn btn-primary">Add to Cart</button>
-          </form>
-        </div>
-        <div class="item-placeholder">
-            <h3 class="card-title"><%= items[9].name %></h3>
-            <p class="card-text"><%= items[9].description %></p>
-            <p class="card-text">Price: <%= items[9].price %></p>
-          <form action="/add-to-cart" method="post">
-            <input type="hidden" name="item-id" value="9">
-            <button type="submit" class="btn btn-primary">Add to Cart</button>
-          </form>
-        </div>
+        <% } %>
       </div>
     </main>
   </div>

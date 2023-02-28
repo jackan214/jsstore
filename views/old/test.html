@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <style>
+      form {
+        padding: 20px;
+        border: 1px solid black;
+        width: 300px;
+        margin: 50px auto;
+      }
+
+      input[type="password"] {
+        padding: 10px;
+        margin: 10px 0;
+        width: 100%;
+      }
+
+      input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        background-color: blue;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="#" method="post">
+      <h3>Change Password</h3>
+      <label for="current-password">Current Password</label>
+      <input type="password" id="current-password" name="current-password">
+
+      <label for="new-password">New Password</label>
+      <input type="password" id="new-password" name="new-password">
+
+      <label for="confirm-password">Confirm New Password</label>
+      <input type="password" id="confirm-password" name="confirm-password">
+
+      <input type="submit" value="Change Password">
+    </form>
+  </body>
+</html>
