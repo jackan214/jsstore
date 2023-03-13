@@ -11,7 +11,7 @@
           <a href="/settings" class="username-box">  
           <%= username %>
           </a>
-          <form action="/logout" method="post">
+          <form action="/storepage/logout" method="post">
             <button class="username-box">
               <a class="textlogout"> logout </a>
             </button>
@@ -27,13 +27,13 @@
             <p class="card-text"><%= items[i].description %></p>
             <p class="card-text">Price: <%= items[i].price %></p>
             <% if (username == 'admin') { %>
-              <form action="/remove-item" method="post">
-                <input type="hidden" name="item-id" value="<%= i %>">
+              <form action="/storepage/remove-item" method="post">
+                <input type="hidden" name="item-id" value="<%= items[i].id %>">
                 <button type="submit" class="btn btn-unprimary">Remove from Inventory</button>
               </form>
             <% } else { %>
-              <form action="/add-to-cart" method="post">
-                <input type="hidden" name="item-id" value="<%= i %>">
+              <form action="/storepage" method="post">
+                <input type="hidden" name="item-id" value="<%= items[i].id %>">
                 <button type="submit" class="btn btn-primary">Add to Cart</button>
               </form>
             <% } %>
@@ -42,7 +42,7 @@
         <% } %>
         <% if (username == 'admin') { %>
         <div class="item-placeholder"> 
-          <form action="/addproduct" method="post">
+          <form action="/storepage/add-item" method="post">
             <div class="card-title">
               <label for="Titlenew">Title</label>
               <input type="text" id="titlenew" name="titlenew" placeholder="Enter a title" required>
