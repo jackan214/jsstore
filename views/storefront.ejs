@@ -11,7 +11,7 @@
           <a href="/settings" class="username-box">  
           <%= username %>
           </a>
-          <form action="/logout" method="post">
+          <form action="/storepage/logout" method="post">
             <button class="username-box">
               <a class="textlogout"> logout </a>
             </button>
@@ -21,28 +21,27 @@
     </header>
     <main>
       <div id="item-grid">
-        <% for (let i = 0; i < items.length; i++) { %>
-        <div class="item-placeholder">
-            <h3 class="card-title"><%= items[i].name %></h3>
-            <p class="card-text"><%= items[i].description %></p>
-            <p class="card-text">Price: <%= items[i].price %></p>
-            <% if (username == 'admin') { %>
-              <form action="/remove-item" method="post">
-                <input type="hidden" name="item-id" value="<%= i %>">
-                <button type="submit" class="btn btn-unprimary">Remove from Inventory</button>
-              </form>
-            <% } else { %>
-              <form action="/add-to-cart" method="post">
-                <input type="hidden" name="item-id" value="<%= i %>">
-                <button type="submit" class="btn btn-primary">Add to Cart</button>
-              </form>
-            <% } %>
-            
-        </div>
+          <% items.map(item => { %>
+            <div class="item-placeholder">
+                <h3 class="card-title"><%= item.name %></h3>
+                <p class="card-text"><%= item.description %></p>
+                <p class="card-text">Price: <%= item.price %></p>
+                <% if (username == 'admin') { %>
+                    <form action="/storepage/remove-item" method="post">
+                        <input type="hidden" name="item-id" value="<%= item.id %>">
+                        <button type="submit" class="btn btn-unprimary">Remove from Inventory</button>
+                    </form>
+                <% } else { %>
+                    <form action="/storepage" method="post">
+                        <input type="hidden" name="item-id" value="<%= item.id %>">
+                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    </form>
+                <% } %>
+            </div>
         <% } %>
         <% if (username == 'admin') { %>
         <div class="item-placeholder"> 
-          <form action="/addproduct" method="post">
+          <form action="/storepage/add-item" method="post">
             <div class="card-title">
               <label for="Titlenew">Title</label>
               <input type="text" id="titlenew" name="titlenew" placeholder="Enter a title" required>
