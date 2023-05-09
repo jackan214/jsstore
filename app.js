@@ -9,6 +9,13 @@ var cartRouter = require("./routes/cart")
 var storepageRouter = require("./routes/storepage")
 var settingsRouter = require("./routes/settings")
 
+var rootRouter = require("./routes/root")
+var loginRouter = require("./routes/login")
+var registerRouter = require("./routes/register")
+var cartRouter = require("./routes/cart")
+var storepageRouter = require("./routes/storepage")
+var settingsRouter = require("./routes/settings")
+
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false}))
 app.use(express.static('views'))
