@@ -21,25 +21,25 @@
     </header>
     <main>
       <div id="item-grid">
-          <% items.map(item => { %>
-            <div class="item-placeholder">
-                <h3 class="card-title"><%= item.name %></h3>
-                <p class="card-text"><%= item.description %></p>
-                <p class="card-text">Price: <%= item.price %></p>
-                <% if (username == 'admin') { %>
-                    <form action="/storepage/remove-item" method="post">
-                        <input type="hidden" name="item-id" value="<%= item.id %>">
-                        <button type="submit" class="btn btn-unprimary">Remove from Inventory</button>
-                    </form>
-                <% } else { %>
-                    <form action="/storepage" method="post">
-                        <input type="hidden" name="item-id" value="<%= item.id %>">
-                        <button type="submit" class="btn btn-primary">Add to Cart</button>
-                    </form>
-                <% } %>
-            </div>
-        <% } %>
-        <% if (username == 'admin') { %>
+        <% items.map(item => { %>
+          <div class="item-placeholder">
+              <h3 class="card-title"><%= item.name %></h3>
+              <p class="card-text"><%= item.description %></p>
+              <p class="card-text">Price: <%= item.price %></p>
+              <% if (username == 'admin') { %>
+                  <form action="/storepage/remove-item" method="post">
+                      <input type="hidden" name="item-id" value="<%= item.id %>">
+                      <button type="submit" class="btn btn-unprimary">Remove from Inventory</button>
+                  </form>
+              <% } else { %>
+                  <form action="/storepage" method="post">
+                      <input type="hidden" name="item-id" value="<%= item.id %>">
+                      <button type="submit" class="btn btn-primary">Add to Cart</button>
+                  </form>
+              <% } %>
+          </div>
+        <% }) %>
+        <% if (username === 'admin') { %>
         <div class="item-placeholder"> 
           <form action="/storepage/add-item" method="post">
             <div class="card-title">
